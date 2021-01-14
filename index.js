@@ -5,11 +5,17 @@ const companies = require('./data/companies.json')
 
 const app = express();
 
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    next();
+  });
+
 app.get('/',(req,res)=>{
     res.send('This is home Address. Please provide endpoint with URL.');
 });
 
 app.get('/company',(req,res)=>{
+    console.log('Called company');
     res.send(Object.values(companies));
 });
 
